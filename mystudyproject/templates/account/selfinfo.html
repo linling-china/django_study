@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}self info{% endblock %}
+
+{% block content %}
+<div class="row text-center vertical-middle-sm">
+    <h1>Self Infomation</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-4 text-right"><span>用户名:</span></div>
+                <div class="col-md-8 text-left">{{user.username}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-right"><span>邮箱:</span></div>
+                <div class="col-md-8 text-left">{{user.email}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-right"><span>生日:</span></div>
+                <div class="col-md-8 text-left">{{useradded.birth}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-right"><span>手机:</span></div>
+                <div class="col-md-8 text-left">{{useradded.phone}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-right"><span>学校:</span></div>
+                <div class="col-md-8 text-left">{{userinfo.school}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-right"><span>公司:</span></div>
+                <div class="col-md-8 text-left">{{userinfo.company}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-right"><span></span>职业:</div>
+                <div class="col-md-8 text-left">{{userinfo.profession}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-right"><span></span>地址:</div>
+                <div class="col-md-8 text-left">{{userinfo.address}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-right"><span></span>关于:</div>
+                <div class="col-md-8 text-left">{{userinfo.aboutme}}</div>
+            </div>
+            <a href="{% url 'account:selfinfo_edit' %}">
+                <button class="btn btn-primary btn-lg">edit</button>
+            </a>
+        </div>
+        <div class="col-md-6">
+            <div style="margin-right:100px">
+                <img name="self_face" src="{% static 'images/newton.jpg' %}" class="img-circle" width="270px" id="self_photo">
+            </div>
+            <div style="margin-right:100px">
+                <button class="btn btn-primary btn-lg" id="upload_image" onclick="upload_image_layer()">
+                    upload photo
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

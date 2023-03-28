@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}LOGIN2{% endblock %}
+
+{% block content %}
+<div class="row text-center vertical-middle-sm">
+    <h1><strong>Login</strong>  -- Built in of django</h1>
+
+    {% if form.errors %}
+        <p style="color:red">Your name and password didn't match.retry!</p>
+    {% else %}
+        <p>Input your username and password.</p>
+    {% endif %}
+
+        {% if next %}
+    <form class="form-horizontal" action="{% url 'account:login2' %}?next={{next}}" method="post">{% csrf_token %}
+        {% else %}
+    <form class="form-horizontal" action="{% url 'account:login2' %}" method="post">{% csrf_token %}
+        {% endif %}
+        <div class="form-group">
+            <label for="{{form.username.id_for_label}}" class="col-md-5 control-label" style="color:red">
+                <span class="glyphicon glyphicon-user"></span>{{form.username.label_tag}}
+            </label>
+            <div class="col-md-6 text-left">{{form.username}}</div>
+        </div>
+        <div class="form-group">
+            <label for="{{form.password.id_for_label}}" class="col-md-5 control-label" style="color:blue">
+                <span class="glyphicon glyphicon-floppy-open"></span>password
+            </label>
+            <div class="col-md-6 text-left">{{form.password}}</div>
+        </div>
+        <input type="submit" value="submit">
+    </form>
+</div>
+{% endblock %}

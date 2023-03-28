@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}LOGIN{% endblock %}
+
+{% block content %}
+<div class="row text-center vertical-middle-sm">
+    <h1><STRONG>LOGIN</STRONG> - <span>by func def</span></h1>
+    <p>Input your username and password.</p>
+    <!--form-horizontal : 水平表单 -->
+    <form class="form-horizontal" action="." method="post">
+        <!-- Cross Site Request forgery -->
+        {% csrf_token %}
+        <!--{{form.as_p}}-->
+       <div class="form-group">
+           <label for="{{formm.username.id_for_label}}"
+                  class="col-md-5 control-label" style="color:red">
+               <span class="glyphicon glyphicon-user"></span>username
+           </label>
+           <div class="col-md-6 text-left">{{formm.username}}</div>
+       </div>
+       <div class="form-group">
+           <label for="{{formm.password.id_for_label}}"
+                  class="col-md-5 control-label" style="color:blue">
+               <span class="glyphicon glyphicon-floppy-open"></span>password
+           </label>
+           <div class="col-md-6 text-left">{{formm.password}}</div>
+       </div>
+       <input type="submit" value="login">
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"> <!--meta 元数据 ,指定浏览器的渲染方式，按照IE该浏览器的最新版本来渲染-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, inital-scal=1"> <!--针对移动网页优化: 按设备宽度进行显示，初始化等级1 -->
+    <title>{% block title %}{% endblock %}</title>  <!--块标签{}{} -->
+    <!-- 引入 Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"> <!--引入样式表文件的外部链接 -->
+    <link rel="stylesheet" href="">
+</head>
+<body>
+{% include "header.html" %}
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+{% include "footer.html" %}
+<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+<script src="{% static 'js/jquery.js' %}"></script> <!--引入前端模板所使用的javascript库中的jQuery文件以及其他 -->
+<!-- 包括所有已编译的插件 -->
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

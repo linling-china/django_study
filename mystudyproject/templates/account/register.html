@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}register user{% endblock %}
+
+{% block content %}
+<div class="row text-center vertical-middle-sm">
+    <h1>registration</h1>
+    <p>If you are user allrady, <strong>Login</strong>, please!</p>
+    <form class="form-horizontal" method="post" action=".">{% csrf_token %}
+            {{ form.as_p }}
+            {{ form_added.as_p }}
+        <input type="submit" value="REGISTER">
+    </form>
+</div>
+{% endblock %}

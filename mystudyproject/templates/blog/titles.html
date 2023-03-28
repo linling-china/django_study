@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}titles{% endblock %}
+
+{% block content %}
+<div class="row text-center vertial-middls-sm"> <!-- -->
+    <h1>博客</h1>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-8">
+        <ul>
+            {% for blog in blogs %}
+            <!--href 分为：绝对路径，相对路径。指向外部网络，使用绝对；指向内部，使用相对。-->
+            <li><a href="{{ blog.id }}">{{ blog.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="col-xs-6 col-md-4">
+        <h2>广告</h2>
+        <p>www.itdiffer.com</p>
+        <img width="200px" src="{% static 'images/book.jpg' %}">
+    </div>
+</div>
+{% endblock %}
