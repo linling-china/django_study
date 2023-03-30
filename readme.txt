@@ -1,3 +1,3 @@
 # django study
 
-branch master
+branch master and test
