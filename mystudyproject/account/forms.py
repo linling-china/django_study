@@ -29,7 +29,7 @@ class UserAddedForm(forms.ModelForm):
 class UserInfoForm(forms.ModelForm):
     class Meta:
         model = UserInfo
-        fields = ("school", "address", "company", "profession", "aboutme")
+        fields = ("school", "address", "company", "profession", "aboutme", "photo")
 
 class UserForm(forms.ModelForm):
     class Meta:

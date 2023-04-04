@@ -1,6 +1,6 @@
 {% load static %}
-<title>jQuery头像裁剪插件cropbox</title>
-<link rel="stylesheet" href="css/imagecrop.css" type="text/css" />
+<!--{% block title %}jQuery头像裁剪插件cropbox{% endblock %}-->
+<link rel="stylesheet" href="{% static 'css/imagecrop.css' %}" type="text/css" />
 <div class="container">
   <div class="imageBox">
     <div class="thumbBox"></div>
@@ -14,20 +14,18 @@
       </a>
       <input type="file" class="" name="upload-file" id="upload-file" />
     </div>
-    <input type="button"   class="Btnsty_peyton" value="OK">
+    <input type="button" id="btnCrop"  class="Btnsty_peyton" value="OK">
     <input type="button" id="btnZoomIn" class="Btnsty_peyton" value="+"  >
     <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-" >
   </div>
   <div class="cropped"></div>
 </div>
 <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/cropbox.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/cropbox-min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/csrf.js' %}"></script>
 <script type="text/javascript">
 
 $(window).load(function() {
-	//$('#btnCrop').click();$("#idName").css("cssText","background-color:red!important");
-
-	//$(".imageBox").css("cssText","background-position:88px 88px!important");$(".imageBox").css("cssText","background-size:222px 222px!important");
 	var options =
 	{
 		thumbBox: '.thumbBox',
@@ -41,14 +39,22 @@ $(window).load(function() {
 		reader.onload = function(e) {
 			options.imgSrc = e.target.result;
 			cropper = $('.imageBox').cropbox(options);
-			getImg();
+			//getImg();
 		}
 		reader.readAsDataURL(this.files[0]);
-		this.files = [];
+		//this.files = [];
 		//getImg();
 	})
 	$('#btnCrop').on('click', function(){
-		alert("图片上传喽");
+		//alert("图片上传喽");
+		$.ajax({
+		  url: '{% url "account:selfimage_edit" %}',
+		  type: 'POST',
+		  data: {"img": img},
+		  success: function(e){
+		    location.href= "{% url 'account:selfinfo'  %}"
+		    },
+		});
 	})
 	function getImg(){
 		img = cropper.getDataURL();

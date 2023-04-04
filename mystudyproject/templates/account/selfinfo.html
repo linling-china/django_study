@@ -50,7 +50,11 @@
         </div>
         <div class="col-md-6">
             <div style="margin-right:100px">
+                {% if userinfo.photo %}
+                <img src="{{ userinfo.photo | striptags }}" class="img-circle" id="self_photo" name="self_face">
+                {% else %}
                 <img name="self_face" src="{% static 'images/newton.jpg' %}" class="img-circle" width="270px" id="self_photo">
+                {% endif %}
             </div>
             <div style="margin-right:100px">
                 <button class="btn btn-primary btn-lg" id="upload_image" onclick="upload_image_layer()">

@@ -60,7 +60,7 @@ def selfinfo_edit(request):
     useradded, b = UserAdded.objects.get_or_create(user=request.user)
     if request.method == 'POST':
 #        print(request.POST)
-        user_form = UserForm(request.POST, instance=request.user)
+        user_form = UserForm(request.POST, instance=request.user)#绑定数据指定实例instance
         useradded_form = UserAddedForm(request.POST, instance=useradded)
         userinfo_form = UserInfoForm(request.POST,instance=userinfo)
         if user_form.is_valid() and useradded_form.is_valid() and userinfo_form.is_valid() :
@@ -80,5 +80,12 @@ def selfinfo_edit(request):
         return render(request, 'account/selfinfo_edit.html',
                       {"user_form":user_form, "useradded_form":useradded_form, "userinfo_form":userinfo_form})
 
-def self_image(request):
-    return render(request, 'account/imagecrop.html')
+def selfimage_edit(request):
+    if request.method == 'POST':
+        img = request.POST['img']
+        userinfo = UserInfo.objects.get(user=request.user)
+        userinfo.photo = img
+        userinfo.save()
+        return HttpResponse("1")
+    else :
+        return render(request, 'account/imagecrop.html')
