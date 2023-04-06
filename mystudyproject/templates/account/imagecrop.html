@@ -52,7 +52,12 @@ $(window).load(function() {
 		  type: 'POST',
 		  data: {"img": img},
 		  success: function(e){
-		    location.href= "{% url 'account:selfinfo'  %}"
+		    //location.href= "{% url 'account:selfinfo'  %}"
+		    if(e == "1"){
+		      parent.location.reload();
+		    }else {
+		      alert("图片上传失败....help me!");
+		    }
 		    },
 		});
 	})

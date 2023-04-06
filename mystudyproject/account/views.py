@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import UserAdded, UserInfo
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.clickjacking import xframe_options_sameorigin
 
 # Create your views here.
 
@@ -47,6 +48,7 @@ def registration(request):
         return render(request, 'account/register.html', {"form" : user_form, "form_added" : user_form_added})
 
 @login_required()
+@xframe_options_sameorigin #允许同源iframe弹窗
 def self_info(request):
 #   return HttpResponse([each+'<br>' for each in dir(request.user)]) #打印出user对象的所有属性
 #   return HttpResponse([each+'<br>' for each in dir(request.user.userinfo)])
@@ -80,6 +82,7 @@ def selfinfo_edit(request):
         return render(request, 'account/selfinfo_edit.html',
                       {"user_form":user_form, "useradded_form":useradded_form, "userinfo_form":userinfo_form})
 
+@xframe_options_sameorigin #允许同源iframe弹窗
 def selfimage_edit(request):
     if request.method == 'POST':
         img = request.POST['img']
